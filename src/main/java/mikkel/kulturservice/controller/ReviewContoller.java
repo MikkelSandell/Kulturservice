@@ -37,9 +37,9 @@ public class ReviewContoller {
             review.setEvent(event_.get());
             review.setUser(user_.get());
             reviewSerice.save(review);
-            return new ResponseEntity<>("ok at oprette event", HttpStatus.OK);
+            return new ResponseEntity<>("ok at oprette review", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("band ikke fundet " + eventID + userID, HttpStatus.OK);
+            return new ResponseEntity<>("event og user ikke fundet " + eventID + userID, HttpStatus.OK);
         }
     }
 }

@@ -22,7 +22,5 @@ public class Review {
     private Event event;
 
     @ManyToOne
-    @JsonBackReference
-    @EqualsAndHashCode.Exclude
     private User user;
 }
