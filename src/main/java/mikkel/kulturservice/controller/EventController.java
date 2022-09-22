@@ -3,6 +3,8 @@ package mikkel.kulturservice.controller;
 
 import mikkel.kulturservice.modle.Bande;
 import mikkel.kulturservice.modle.Event;
+import mikkel.kulturservice.service.BandeService;
+import mikkel.kulturservice.service.EventService;
 import mikkel.kulturservice.service.IBandeService;
 import mikkel.kulturservice.service.IEventService;
 import org.springframework.http.HttpStatus;

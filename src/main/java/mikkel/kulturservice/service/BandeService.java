@@ -4,6 +4,7 @@ import mikkel.kulturservice.modle.Bande;
 import mikkel.kulturservice.repository.BandeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -38,5 +39,10 @@ public class BandeService implements IBandeService{
     @Override
     public Optional<Bande> findById(Long aLong) {
         return bandeRepository.findById(aLong);
+    }
+
+    @Override
+    public List<Bande> findBandeByName(String name) {
+        return bandeRepository.findBandeByName(name);
     }
 }
