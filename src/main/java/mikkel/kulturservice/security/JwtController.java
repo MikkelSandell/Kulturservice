@@ -7,6 +7,7 @@ import mikkel.kulturservice.security.models.JwtRequestModel;
 import mikkel.kulturservice.security.models.JwtResponseModel;
 import mikkel.kulturservice.service.IUserService;
 import mikkel.kulturservice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -27,6 +28,7 @@ public class JwtController {
     private TokenManager tokenManager;
     private IUserService userService;
 
+    @Autowired
     public JwtController(UserService userService) {
         this.userService = userService;
     }
