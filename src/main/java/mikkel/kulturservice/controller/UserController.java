@@ -3,10 +3,12 @@ package mikkel.kulturservice.controller;
 import mikkel.kulturservice.modle.Bande;
 import mikkel.kulturservice.modle.User;
 import mikkel.kulturservice.modle.Venue;
+import mikkel.kulturservice.security.JwtController;
 import mikkel.kulturservice.service.IBandeService;
 import mikkel.kulturservice.service.IUserService;
 import mikkel.kulturservice.service.IVenueService;
 import mikkel.kulturservice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ public class UserController {
     private IUserService userService;
     private IVenueService venueService;
 
+    private JwtController jwtController;
+
     private IBandeService bandeService;
 
     public UserController(IUserService userService, IVenueService venueService, IBandeService bandeService) {
@@ -28,8 +32,18 @@ public class UserController {
         this.bandeService = bandeService;
     }
 
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    public UserController(UserService userService, JwtController jwtController) {
+        this.userService = userService;
+        this.jwtController = jwtController;
+    }
+
     @PostMapping("/createUser")
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public  ResponseEntity<User> createUser(@RequestBody User user){
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

@@ -3,6 +3,7 @@ package mikkel.kulturservice.modle;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,6 +13,8 @@ import java.util.Set;
 //@Data laver getter, setter, toString(), hashCode()
 @Getter
 @Setter
+@NoArgsConstructor
+@Table(name = "users") // fordi @DataJpaTest ikke accepterer navnet "User"
 @Entity
 public class User {
     @Id
@@ -19,6 +22,14 @@ public class User {
     private Long id;
 
     private String name;
+
+    private String username;
+    private String password;
+
+    public User(String username, String password) {
+        this.username=username;
+        this.password=password;
+    }
 
     //@OneToMany(mappedBy = "user")
     //private Set<Review> reviews = new HashSet<>();

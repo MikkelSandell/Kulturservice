@@ -1,7 +1,9 @@
 package mikkel.kulturservice.service;
 
+import mikkel.kulturservice.config.SecurityConfiguration;
 import mikkel.kulturservice.modle.User;
 import mikkel.kulturservice.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,11 +23,17 @@ public class UserService implements IUserService{
         return null;
     }
 
-    @Override
+    /*@Override
     public User save(User object) {
         return userRepository.save(object);
     }
-
+*/
+    @Override
+    public User save(User user) {
+        PasswordEncoder pw = SecurityConfiguration.passwordEncoder();
+        user.setPassword(pw.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
     @Override
     public void delete(User object) {
 
@@ -44,5 +52,16 @@ public class UserService implements IUserService{
     @Override
     public List<User> findUserByName(String name) {
         return userRepository.findUserByName(name);
+    }
+
+    @Override
+    public List<User> findByName(String name) {
+        System.out.println("Userservice called findByName with argument: " + name);
+        return userRepository.findByUsername(name);
+    }
+
+    @Override
+    public void update(User userToUpdate) {
+        userRepository.save(userToUpdate);
     }
 }
